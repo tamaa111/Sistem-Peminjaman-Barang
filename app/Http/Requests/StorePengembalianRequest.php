@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StorePengembalianRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'peminjaman_id' => 'required|exists:peminjaman,id',
+            'tanggal_dikembalikan' => 'required|date',
+            'status_barang' => 'nullable|in:tidak ada masalah,ada masalah,menunggu',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'peminjaman_id.required' => 'Peminjaman harus dipilih',
+            'peminjaman_id.exists' => 'Peminjaman tidak ditemukan',
+            'tanggal_dikembalikan.required' => 'Tanggal dikembalikan harus diisi',
+        ];
+    }
+}
