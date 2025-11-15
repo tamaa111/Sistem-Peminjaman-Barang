@@ -24,21 +24,21 @@
                     <table class="table table-bordered table-striped datatable">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Gambar</th>
-                                <th>Kode Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Lokasi</th>
-                                <th>Jumlah</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
+                                <th class="align-middle">No</th>
+                                <th class="align-middle">Gambar</th>
+                                <th class="align-middle">Kode Barang</th>
+                                <th class="align-middle">Nama Barang</th>
+                                <th class="align-middle">Lokasi</th>
+                                <th class="align-middle">Jumlah</th>
+                                <th class="align-middle">Status</th>
+                                <th class="align-middle">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($barangs as $index => $barang)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>
+                                    <td class="align-middle">{{ $index + 1 }}</td>
+                                    <td class="align-middle">
                                         @if ($barang->gambar)
                                             <img src="{{ asset('storage/' . $barang->gambar) }}" width="50"
                                                 class="img-thumbnail">
@@ -46,18 +46,18 @@
                                             <img src="https://via.placeholder.com/50" class="img-thumbnail">
                                         @endif
                                     </td>
-                                    <td>{{ $barang->kode_barang }}</td>
-                                    <td>{{ $barang->nama_barang }}</td>
-                                    <td>{{ $barang->lokasi }}</td>
-                                    <td>{{ $barang->jumlah }}</td>
-                                    <td>
+                                    <td class="align-middle">{{ $barang->kode_barang }}</td>
+                                    <td class="align-middle">{{ $barang->nama_barang }}</td>
+                                    <td class="align-middle">{{ $barang->lokasi }}</td>
+                                    <td class="align-middle">{{ $barang->jumlah }}</td>
+                                    <td class="align-middle">
                                         @if ($barang->status == 'tersedia')
                                             <span class="badge badge-success">Tersedia</span>
                                         @else
                                             <span class="badge badge-danger">Tidak Tersedia</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="align-middle">
                                         <button type="button" class="btn btn-warning btn-sm btn-edit"
                                             data-id="{{ $barang->id }}" data-nama="{{ $barang->nama_barang }}"
                                             data-kode="{{ $barang->kode_barang }}" data-jumlah="{{ $barang->jumlah }}"
@@ -133,11 +133,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Nama Barang</label>
-                            <input type="text" name="nama_barang" id="edit_nama_barang" class="form-control" required>
+                            <input type="text" name="nama_barang" id="edit_nama_barang" class="form-control"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Kode Barang</label>
-                            <input type="text" name="kode_barang" id="edit_kode_barang" class="form-control" required>
+                            <input type="text" name="kode_barang" id="edit_kode_barang" class="form-control"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Jumlah</label>

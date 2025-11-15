@@ -21,7 +21,7 @@ class UpdateBarangRequest extends FormRequest
      */
     public function rules(): array
     {
-        $barangId = $this->route('barang');
+        $barangId = $this->route('barang') ? $this->route('barang')->id : null;
         return [
             'nama_barang' => 'required|string|max:255',
             'kode_barang' => 'required|string|max:50|unique:barang,kode_barang,' . $barangId,

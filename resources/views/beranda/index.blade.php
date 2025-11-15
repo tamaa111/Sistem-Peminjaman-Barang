@@ -15,7 +15,8 @@
                 <div class="card">
                     @if ($barang->gambar)
                         <img src="{{ asset('storage/' . $barang->gambar) }}" class="card-img-top"
-                            alt="{{ $barang->nama_barang }}" style="height: 200px; object-fit: cover;">
+                            alt="{{ $barang->nama_barang }}"
+                            style="height: 200px; object-fit: contain; background-color: #f8f9fa;">
                     @else
                         <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="{{ $barang->nama_barang }}">
                     @endif

@@ -30,12 +30,12 @@
                         <tbody>
                             @foreach ($pengembalians as $index => $pengembalian)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $pengembalian->peminjaman->user->nama }}</td>
-                                    <td>{{ $pengembalian->peminjaman->barang->nama_barang }}</td>
-                                    <td>{{ $pengembalian->peminjaman->jumlah_pinjam }}</td>
-                                    <td>{{ $pengembalian->tanggal_dikembalikan->format('d/m/Y') }}</td>
-                                    <td>
+                                    <td class="align-middle">{{ $index + 1 }}</td>
+                                    <td class="align-middle">{{ $pengembalian->peminjaman->user->nama }}</td>
+                                    <td class="align-middle">{{ $pengembalian->peminjaman->barang->nama_barang }}</td>
+                                    <td class="align-middle">{{ $pengembalian->peminjaman->jumlah_pinjam }}</td>
+                                    <td class="align-middle">{{ $pengembalian->tanggal_dikembalikan->format('d/m/Y') }}</td>
+                                    <td class="align-middle">
                                         <button type="button" class="btn btn-success btn-sm btn-approve"
                                             data-id="{{ $pengembalian->id }}">
                                             <i class="fas fa-check"></i> Selesai

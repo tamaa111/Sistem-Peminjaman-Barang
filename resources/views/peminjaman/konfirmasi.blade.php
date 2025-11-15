@@ -32,17 +32,17 @@
                         <tbody>
                             @foreach ($peminjamans as $index => $peminjaman)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $peminjaman->user->nama }}</td>
-                                    <td>
+                                    <td class="align-middle">{{ $index + 1 }}</td>
+                                    <td class="align-middle">{{ $peminjaman->user->nama }}</td>
+                                    <td class="align-middle">
                                         {{ $peminjaman->barang->nama_barang }}<br>
                                         <small class="text-muted">Stok: {{ $peminjaman->barang->jumlah }}</small>
                                     </td>
-                                    <td>{{ $peminjaman->tanggal_pinjam->format('d/m/Y') }}</td>
-                                    <td>{{ $peminjaman->tanggal_kembali->format('d/m/Y') }}</td>
-                                    <td>{{ $peminjaman->jumlah_pinjam }}</td>
-                                    <td>{{ $peminjaman->keperluan }}</td>
-                                    <td>
+                                    <td class="align-middle">{{ $peminjaman->tanggal_pinjam->format('d/m/Y') }}</td>
+                                    <td class="align-middle">{{ $peminjaman->tanggal_kembali->format('d/m/Y') }}</td>
+                                    <td class="align-middle">{{ $peminjaman->jumlah_pinjam }}</td>
+                                    <td class="align-middle">{{ $peminjaman->keperluan }}</td>
+                                    <td class="align-middle">
                                         <button type="button" class="btn btn-success btn-sm btn-approve"
                                             data-id="{{ $peminjaman->id }}">
                                             <i class="fas fa-check"></i> Setuju

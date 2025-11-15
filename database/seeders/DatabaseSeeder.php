@@ -12,12 +12,8 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // Create Super Admin
         User::create([
             'nama' => 'Super Admin',
             'username' => 'superadmin',
@@ -25,7 +21,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'super admin',
         ]);
 
-        // Create Admin
         User::create([
             'nama' => 'Admin',
             'username' => 'admin',
@@ -33,7 +28,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        // Create User
         User::create([
             'nama' => 'User Demo',
             'username' => 'user',
@@ -41,7 +35,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'user',
         ]);
 
-        // Create Sample Barang
         Barang::create([
             'nama_barang' => 'Laptop Dell Latitude',
             'kode_barang' => 'LPT001',
@@ -79,6 +72,22 @@ class DatabaseSeeder extends Seeder
             'kode_barang' => 'TAB001',
             'jumlah' => 8,
             'lokasi' => 'Ruang IT - Rak A2',
+            'status' => 'tersedia',
+        ]);
+
+        Barang::create([
+            'nama_barang' => 'Sound System',
+            'kode_barang' => 'SYM001',
+            'jumlah' => 3,
+            'lokasi' => 'Ruang Audio',
+            'status' => 'tersedia',
+        ]);
+
+        Barang::create([
+            'nama_barang' => 'Troli Barang',
+            'kode_barang' => 'TB001',
+            'jumlah' => 5,
+            'lokasi' => 'Ruang Gudang',
             'status' => 'tersedia',
         ]);
     }
