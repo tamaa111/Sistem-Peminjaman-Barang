@@ -21,10 +21,13 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userId = $this->route('user') ? $this->route('user')->id : null;
+        // Untuk route 'admins.update', ambil ID dari parameter 'admin'
+        // Untuk route 'users.update', ambil ID dari parameter 'user'
+        $userId = $this->route('admin') ? $this->route('admin')->id : ($this->route('user') ? $this->route('user')->id : null);
+
         return [
             'nama' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username,' . $userId,
+            'username' => 'nullable|string|max:255|unique:users,username,' . $userId,
             'password' => 'nullable|string|min:6|confirmed',
             'role' => 'required|in:super admin,admin,user',
         ];

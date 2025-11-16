@@ -64,6 +64,12 @@ class AdminController extends Controller
     {
         $data = $request->validated();
 
+        // Jika username tidak diisi, hapus dari data (gunakan username lama)
+        if (empty($data['username'])) {
+            unset($data['username']);
+        }
+
+        // Jika password diisi, hash password
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
         } else {

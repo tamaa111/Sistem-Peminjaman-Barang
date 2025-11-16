@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -34,7 +35,26 @@ class ProfileController extends Controller
         $request->user()->fill($validated);
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $roleName = ucwords($request->user()->role);
+        return Redirect::route('profile.edit')->with('success', $roleName . ' berhasil diupdate');
+    }
+
+    /**
+     * Update the user's password.
+     */
+    public function updatePassword(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+
+        $request->user()->update([
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        $roleName = ucwords($request->user()->role);
+        return Redirect::route('profile.edit')->with('success', 'Password ' . $roleName . ' berhasil diupdate');
     }
 
     /**

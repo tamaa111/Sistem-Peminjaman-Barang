@@ -128,7 +128,8 @@
                         </div>
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" name="username" id="edit_username" class="form-control" required>
+                            <input type="text" name="username" id="edit_username" class="form-control"
+                                placeholder="Kosongkan jika tidak ingin mengubah username">
                         </div>
                         <div class="form-group">
                             <label>Password (Kosongkan jika tidak diubah)</label>
