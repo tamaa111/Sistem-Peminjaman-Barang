@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link">
-        <i class="fas fa-boxes brand-image"></i>
+        <i class="fas fa-boxes brand-image" style="font-size: 1.8rem; margin-top: 0;"></i>
         <span class="brand-text font-weight-light">Peminjaman Barang</span>
     </a>
 
