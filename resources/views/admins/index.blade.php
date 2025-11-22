@@ -38,16 +38,19 @@
                                     <td>{{ $admin->nama }}</td>
                                     <td>{{ $admin->username }}</td>
                                     <td>
-                                        @if ($admin->role == 'super admin')
-                                            <span class="badge badge-danger">{{ ucwords($admin->role) }}</span>
+                                        @if ($admin->hasRole('super admin'))
+                                            <span
+                                                class="badge badge-danger">{{ ucwords($admin->getRoleNames()->first() ?? 'admin') }}</span>
                                         @else
-                                            <span class="badge badge-warning">{{ ucwords($admin->role) }}</span>
+                                            <span
+                                                class="badge badge-warning">{{ ucwords($admin->getRoleNames()->first() ?? 'admin') }}</span>
                                         @endif
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-warning btn-sm btn-edit"
                                             data-id="{{ $admin->id }}" data-nama="{{ $admin->nama }}"
-                                            data-username="{{ $admin->username }}" data-role="{{ $admin->role }}">
+                                            data-username="{{ $admin->username }}"
+                                            data-role="{{ $admin->getRoleNames()->first() ?? 'admin' }}">
                                             <i class="fas fa-edit"></i>
                                         </button>
                                         @if ($admin->id != auth()->id())

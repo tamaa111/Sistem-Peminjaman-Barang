@@ -25,7 +25,6 @@ class StoreUserRequest extends FormRequest
             'nama' => 'required|string|max:255',
             'username' => 'required|string|unique:users,username|max:255',
             'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|in:super admin,admin,user',
         ];
     }
 
@@ -38,7 +37,6 @@ class StoreUserRequest extends FormRequest
             'password.required' => 'Password harus diisi',
             'password.min' => 'Password minimal 6 karakter',
             'password.confirmed' => 'Konfirmasi password tidak cocok',
-            'role.required' => 'Role harus dipilih',
         ];
     }
 }

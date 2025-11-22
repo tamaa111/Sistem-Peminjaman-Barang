@@ -14,26 +14,30 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        User::create([
+        // Seed roles first
+        $this->call(RoleSeeder::class);
+
+        // Create users
+        $superAdmin = User::create([
             'nama' => 'Super Admin',
             'username' => 'superadmin',
             'password' => Hash::make('password'),
-            'role' => 'super admin',
         ]);
+        $superAdmin->assignRole('super admin');
 
-        User::create([
+        $admin = User::create([
             'nama' => 'Admin',
             'username' => 'admin',
             'password' => Hash::make('password'),
-            'role' => 'admin',
         ]);
+        $admin->assignRole('admin');
 
-        User::create([
+        $user = User::create([
             'nama' => 'User Demo',
             'username' => 'user',
             'password' => Hash::make('password'),
-            'role' => 'user',
         ]);
+        $user->assignRole('user');
 
         Barang::create([
             'nama_barang' => 'Laptop Dell Latitude',

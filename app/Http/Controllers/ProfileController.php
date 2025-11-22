@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $request->user()->fill($validated);
         $request->user()->save();
 
-        $roleName = ucwords($request->user()->role);
+        $roleName = ucwords($request->user()->getRoleNames()->first() ?? 'user');
         return Redirect::route('profile.edit')->with('success', $roleName . ' berhasil diupdate');
     }
 
@@ -53,7 +53,7 @@ class ProfileController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        $roleName = ucwords($request->user()->role);
+        $roleName = ucwords($request->user()->getRoleNames()->first() ?? 'user');
         return Redirect::route('profile.edit')->with('success', 'Password ' . $roleName . ' berhasil diupdate');
     }
 

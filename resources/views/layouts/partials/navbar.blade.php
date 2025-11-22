@@ -10,7 +10,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
-        @if (auth()->user()->role != 'user')
+        @if (auth()->user()->hasAnyRole(['admin', 'super admin']))
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>

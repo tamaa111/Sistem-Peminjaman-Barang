@@ -18,7 +18,7 @@ class PeminjamanController extends Controller
     {
         $user = Auth::user();
 
-        if (in_array($user->role, ['admin', 'super admin'])) {
+        if ($user->hasAnyRole(['admin', 'super admin'])) {
             $peminjamans = Peminjaman::with(['user', 'barang'])->latest()->get();
         } else {
             $peminjamans = Peminjaman::with(['barang'])

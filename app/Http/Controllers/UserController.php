@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role', 'user')->latest()->get();
+        $users = User::role('user')->latest()->get();
         return view('users.index', compact('users'));
     }
 
@@ -34,9 +34,9 @@ class UserController extends Controller
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
-        $data['role'] = 'user';
 
-        User::create($data);
+        $user = User::create($data);
+        $user->assignRole('user');
 
         return redirect()->route('users.index')
             ->with('success', 'User berhasil ditambahkan');

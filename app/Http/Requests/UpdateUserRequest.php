@@ -29,7 +29,6 @@ class UpdateUserRequest extends FormRequest
             'nama' => 'required|string|max:255',
             'username' => 'nullable|string|max:255|unique:users,username,' . $userId,
             'password' => 'nullable|string|min:6|confirmed',
-            'role' => 'required|in:super admin,admin,user',
         ];
     }
 
@@ -41,7 +40,6 @@ class UpdateUserRequest extends FormRequest
             'username.unique' => 'Username sudah digunakan',
             'password.min' => 'Password minimal 6 karakter',
             'password.confirmed' => 'Konfirmasi password tidak cocok',
-            'role.required' => 'Role harus dipilih',
         ];
     }
 }

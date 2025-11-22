@@ -15,7 +15,7 @@
             </div>
             <div class="info">
                 <a href="{{ route('profile.edit') }}" class="d-block">{{ auth()->user()->nama }}</a>
-                <small class="text-muted">{{ ucwords(auth()->user()->role) }}</small>
+                <small class="text-muted">{{ ucwords(auth()->user()->getRoleNames()->first() ?? 'user') }}</small>
             </div>
         </div>
 
@@ -24,7 +24,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
 
-                @if (in_array(auth()->user()->role, ['admin', 'super admin']))
+                @if (auth()->user()->hasAnyRole(['admin', 'super admin']))
                     <!-- Dashboard -->
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}"
@@ -90,7 +90,7 @@
                         </a>
                     </li>
 
-                    @if (auth()->user()->role == 'super admin')
+                    @if (auth()->user()->hasRole('super admin'))
                         <!-- Data Admin -->
                         <li class="nav-item">
                             <a href="{{ route('admins.index') }}"

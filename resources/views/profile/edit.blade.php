@@ -31,7 +31,8 @@
                         </div>
                         <div class="form-group">
                             <label>Role</label>
-                            <input type="text" class="form-control" value="{{ ucwords($user->role) }}" disabled>
+                            <input type="text" class="form-control"
+                                value="{{ ucwords(auth()->user()->getRoleNames()->first() ?? 'user') }}" disabled>
                         </div>
                     </div>
                     <div class="card-footer">

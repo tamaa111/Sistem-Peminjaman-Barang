@@ -37,7 +37,9 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $user->nama }}</td>
                                     <td>{{ $user->username }}</td>
-                                    <td><span class="badge badge-info">{{ ucwords($user->role) }}</span></td>
+                                    <td><span
+                                            class="badge badge-info">{{ ucwords($user->getRoleNames()->first() ?? 'user') }}</span>
+                                    </td>
                                     <td>
                                         <button type="button" class="btn btn-warning btn-sm btn-edit"
                                             data-id="{{ $user->id }}" data-nama="{{ $user->nama }}"

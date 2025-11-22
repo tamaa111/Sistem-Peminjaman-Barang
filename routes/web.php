@@ -11,15 +11,25 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 // Redirect root to login
+// Route::get('/', function () {
+//     return redirect()->route('login');
+// });
+
+// Redirect root to welcome page
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect()->route('welcome');
 });
+
+// Welcome page
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
 
 // Routes with authentication
 Route::middleware(['auth'])->group(function () {
 
     // Dashboard (Admin & Super Admin only)
-    Route::middleware(['role:admin,super admin'])->group(function () {
+    Route::middleware(['role:admin|super admin'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // Barang Management

@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = User::whereIn('role', ['admin', 'super admin'])->latest()->get();
+        $admins = User::role(['admin', 'super admin'])->latest()->get();
         return view('admins.index', compact('admins'));
     }
 
@@ -35,7 +35,8 @@ class AdminController extends Controller
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
 
-        User::create($data);
+        $admin = User::create($data);
+        $admin->assignRole($request->input('role'));
 
         return redirect()->route('admins.index')
             ->with('success', 'Admin berhasil ditambahkan');
@@ -77,6 +78,11 @@ class AdminController extends Controller
         }
 
         $admin->update($data);
+
+        // Update role using Spatie
+        if ($request->has('role')) {
+            $admin->syncRoles([$request->input('role')]);
+        }
 
         return redirect()->route('admins.index')
             ->with('success', 'Admin berhasil diupdate');
