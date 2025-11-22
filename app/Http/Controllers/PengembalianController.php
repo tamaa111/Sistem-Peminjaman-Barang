@@ -105,10 +105,8 @@ class PengembalianController extends Controller
         $peminjaman = $pengembalian->peminjaman;
         $barang = $peminjaman->barang;
 
-        // Update status pengembalian
         $pengembalian->update(['status_barang' => 'tidak ada masalah']);
 
-        // Kembalikan stok barang
         $barang->jumlah += $peminjaman->jumlah_pinjam;
         $barang->status = 'tersedia';
         $barang->save();
@@ -121,7 +119,6 @@ class PengembalianController extends Controller
     {
         $pengembalian = Pengembalian::findOrFail($id);
 
-        // Update status pengembalian
         $pengembalian->update(['status_barang' => 'ada masalah']);
 
         return redirect()->back()
@@ -132,14 +129,12 @@ class PengembalianController extends Controller
     {
         $peminjaman = Peminjaman::findOrFail($id);
 
-        // Buat record pengembalian
         Pengembalian::create([
             'peminjaman_id' => $peminjaman->id,
             'tanggal_dikembalikan' => now(),
             'status_barang' => 'menunggu'
         ]);
 
-        // Update status peminjaman
         $peminjaman->update(['status' => 'dikembalikan']);
 
         return redirect()->back()

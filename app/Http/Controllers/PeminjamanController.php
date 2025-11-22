@@ -48,7 +48,6 @@ class PeminjamanController extends Controller
         $data['user_id'] = Auth::id();
         $data['status'] = 'menunggu';
 
-        // Validasi stok
         $barang = Barang::find($data['barang_id']);
         if ($barang->jumlah < $data['jumlah_pinjam']) {
             return redirect()->back()
@@ -105,16 +104,13 @@ class PeminjamanController extends Controller
         $peminjaman = Peminjaman::findOrFail($id);
         $barang = $peminjaman->barang;
 
-        // Cek stok
         if ($barang->jumlah < $peminjaman->jumlah_pinjam) {
             return redirect()->back()
                 ->with('error', 'Stok barang tidak mencukupi');
         }
 
-        // Update status peminjaman
         $peminjaman->update(['status' => 'dipinjam']);
 
-        // Kurangi stok barang
         $barang->jumlah -= $peminjaman->jumlah_pinjam;
         if ($barang->jumlah == 0) {
             $barang->status = 'tidak tersedia';

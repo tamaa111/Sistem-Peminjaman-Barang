@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        // Seed roles first
+        // Seed roles
         $this->call(RoleSeeder::class);
 
-        // Create users
+        // users
         $superAdmin = User::create([
             'nama' => 'Super Admin',
             'username' => 'superadmin',

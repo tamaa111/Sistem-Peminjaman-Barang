@@ -21,8 +21,6 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        // Untuk route 'admins.update', ambil ID dari parameter 'admin'
-        // Untuk route 'users.update', ambil ID dari parameter 'user'
         $userId = $this->route('admin') ? $this->route('admin')->id : ($this->route('user') ? $this->route('user')->id : null);
 
         return [

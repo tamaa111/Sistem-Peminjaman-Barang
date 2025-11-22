@@ -38,7 +38,6 @@ class BarangController extends Controller
             $data['gambar'] = $request->file('gambar')->store('barang', 'public');
         }
 
-        // Set status berdasarkan jumlah
         $data['status'] = $data['jumlah'] > 0 ? 'tersedia' : 'tidak tersedia';
 
         Barang::create($data);
@@ -71,14 +70,12 @@ class BarangController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
             if ($barang->gambar) {
                 Storage::disk('public')->delete($barang->gambar);
             }
             $data['gambar'] = $request->file('gambar')->store('barang', 'public');
         }
 
-        // Set status berdasarkan jumlah
         $data['status'] = $data['jumlah'] > 0 ? 'tersedia' : 'tidak tersedia';
 
         $barang->update($data);
@@ -92,7 +89,6 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        // Hapus gambar jika ada
         if ($barang->gambar) {
             Storage::disk('public')->delete($barang->gambar);
         }
