@@ -20,7 +20,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                @if (in_array(auth()->user()->role, ['admin', 'super admin']))
+                                @if (auth()->user()->hasAnyRole(['admin', 'super admin']))
                                     <th>Peminjam</th>
                                 @endif
                                 <th>Barang</th>
@@ -35,7 +35,7 @@
                             @foreach ($peminjamans as $index => $peminjaman)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    @if (in_array(auth()->user()->role, ['admin', 'super admin']))
+                                    @if (auth()->user()->hasAnyRole(['admin', 'super admin']))
                                         <td>{{ $peminjaman->user->nama }}</td>
                                     @endif
                                     <td>{{ $peminjaman->barang->nama_barang }}</td>
@@ -54,7 +54,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($peminjaman->status == 'dipinjam' && auth()->user()->role == 'user')
+                                        @if ($peminjaman->status == 'dipinjam' && auth()->user()->hasRole('user'))
                                             <button type="button" class="btn btn-success btn-sm btn-kembalikan"
                                                 data-id="{{ $peminjaman->id }}">
                                                 <i class="fas fa-undo"></i> Kembalikan

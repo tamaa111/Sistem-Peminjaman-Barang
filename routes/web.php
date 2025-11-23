@@ -28,7 +28,7 @@ Route::get('/welcome', function () {
 // Routes with authentication
 Route::middleware(['auth'])->group(function () {
 
-    // Dashboard (Admin & Super Admin only)
+    // Dashboard (Admin & Super Admin)
     Route::middleware(['role:admin|super admin'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -49,12 +49,12 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('users', UserController::class);
     });
 
-    // Admin Management (Super Admin only)
+    // Admin Management (Super Admin)
     Route::middleware(['role:super admin'])->group(function () {
         Route::resource('admins', AdminController::class);
     });
 
-    // Beranda (User only)
+    // Beranda (User)
     Route::middleware(['role:user'])->group(function () {
         Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
     });
