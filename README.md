@@ -1,11 +1,3 @@
-## Nama Anggota
-
-- 3124640054 - Vendy Paulus Pratama 
-
-- 3125640016 - Farhan Abdurrahman Zain 
-
-
-
 ## Sistem Peminjaman Barang
 
 Aplikasi Sistem Peminjaman Barang ini bertujuan untuk mempermudah proses
